@@ -1,0 +1,18 @@
+server:
+  port: 80
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/babytun?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+  mvc:
+    favicon:
+      enabled: false
+  redis:
+    port: 6379
+    database: 5
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

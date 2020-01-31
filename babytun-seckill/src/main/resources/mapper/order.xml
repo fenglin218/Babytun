@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><!--@@请加Q群：369531466,与几百名工程师共同学习,遇到难题可随时@老齐,多一点真诚，少一点套路@@-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itlaoqi.babytunseckill.dao.OrderDAO">
+    <insert id="insert" parameterType="com.itlaoqi.babytunseckill.entity.Order">
+        insert into t_order(order_no , order_status , userid , recv_name , recv_address , recv_mobile,postage , amout , create_time)
+        value (#{orderNo} , #{orderStatus} , #{userid} , #{recvName} , #{recvAddress} , #{recvMobile} , #{postage} , #{amout} , #{createTime})
+        <selectKey resultType="Long" keyProperty="orderId">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+    <select id="findByOrderNo" parameterType="java.lang.String" resultType="com.itlaoqi.babytunseckill.entity.Order">
+        select * from t_order where order_no  =#{value}
+    </select>
+</mapper>

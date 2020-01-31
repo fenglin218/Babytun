@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!--@@请加Q群：369531466,与几百名工程师共同学习,遇到难题可随时@老齐,多一点真诚，少一点套路@@-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itlaoqi.babytunseckill.dao.PromotionSecKillDAO">
+    <select id="findById" parameterType="long" resultType="com.itlaoqi.babytunseckill.entity.PromotionSecKill">
+      select * from t_promotion_seckill where ps_id = #{value}
+    </select>
+
+    <select id="findUnstartSecKill" resultType="com.itlaoqi.babytunseckill.entity.PromotionSecKill">
+        select * from t_promotion_seckill where now() BETWEEN start_time AND end_time and status = 0 ;
+    </select>
+
+    <select id="findExpireSecKill" resultType="com.itlaoqi.babytunseckill.entity.PromotionSecKill">
+        select * from t_promotion_seckill where now() > end_time and status = 1
+    </select>
+
+    <update id="update" parameterType="com.itlaoqi.babytunseckill.entity.PromotionSecKill">
+        UPDATE t_promotion_seckill SET goods_id = #{goodsId}, ps_count = #{psCount},
+            start_time = #{startTime}, end_time = #{endTime},
+            status=#{status} , current_price = #{currentPrice}  WHERE ps_id = #{psId}
+    </update>
+</mapper>
